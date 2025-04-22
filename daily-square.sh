@@ -18,3 +18,4 @@ git push origin main
 gh repo edit AshB4/micro-experiments --visibility public
 sleep 15
 gh repo edit AshB4/micro-experiments --visibility private
+echo "[$(date)] daily-square.sh ran successfully" >> /Users/ash/Desktop/micro-experiments/cronlog.txt
