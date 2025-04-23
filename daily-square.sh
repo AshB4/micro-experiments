@@ -5,6 +5,17 @@ cd ~/Desktop/micro-experiments || {
   exit 1
 }
 
+# Flip repo visibility to PUBLIC so GitHub counts the commit
+if gh repo edit AshB4/micro-experiments --visibility public --accept-visibility-change-consequences; then
+  echo "[$(date)] ✅ Repo set to PUBLIC" >> cronlog.txt
+else
+  echo "[$(date)] ❌ Failed to set repo to PUBLIC" >> cronlog.txt
+  exit 1
+fi
+
+# Give GitHub time to propagate visibility change
+sleep 10
+
 # Create a believable edit
 echo "// $(date)" >> notes/scratch.js
 
@@ -20,12 +31,13 @@ else
   exit 1
 fi
 
-# Flip visibility to public, wait, then private again
-if gh repo edit AshB4/micro-experiments --visibility public --accept-visibility-change-consequences &&
-   sleep 15 &&
-   gh repo edit AshB4/micro-experiments --visibility private --accept-visibility-change-consequences; then
-  echo "[$(date)] ✅ Repo visibility flipped (public ➜ private)" >> cronlog.txt
+# Wait to let GitHub process contribution activity
+sleep 20
+
+# Flip repo visibility to PRIVATE again
+if gh repo edit AshB4/micro-experiments --visibility private --accept-visibility-change-consequences; then
+  echo "[$(date)] ✅ Repo set to PRIVATE again" >> cronlog.txt
 else
-  echo "[$(date)] ❌ Repo visibility flip FAILED" >> cronlog.txt
+  echo "[$(date)] ❌ Failed to set repo back to PRIVATE" >> cronlog.txt
   exit 1
 fi
