@@ -1,0 +1,82 @@
+# 🌱 System Usage Notes
+_Last updated: 2025-04-24 18:47:06_
+
+This is your GitHub Green Square Ritual Automation system. Here's everything you need to know to check it, fix it, or run it manually.
+
+---
+
+## 🕒 Check if the Ritual is Scheduled for Today
+
+Run:
+```bash
+atq
+```
+
+This will show you something like:
+```
+2	Fri Apr 25 09:52:00 2025
+```
+That means the daily ritual is scheduled to run at that time.
+
+To see what exactly is scheduled:
+```bash
+at -c <job-number>
+```
+For example:
+```bash
+at -c 2
+```
+
+---
+
+## 🛠️ Run the Ritual Manually (If Needed)
+
+You can trigger the ritual manually any time:
+```bash
+bash ~/Desktop/micro-experiments/daily-square.sh
+```
+
+This will:
+- Flip the repo to public
+- Add a tiny commit
+- Push to GitHub
+- Flip the repo back to private
+- Log everything in `cronlog.txt`
+
+---
+
+## 🧹 General Maintenance Checks
+
+1. **Verify crontab is set:**
+```bash
+crontab -l
+```
+You should see something like:
+```
+0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/daily.sh
+```
+
+2. **Check the daily log:**
+```bash
+cat ~/Desktop/micro-experiments/cronlog.txt
+```
+
+3. **Check for errors:**
+```bash
+cat ~/Desktop/micro-experiments/cronerror.txt
+```
+
+---
+
+## 🔁 Reset / Restart
+
+If anything ever seems off, you can safely re-run the setup:
+```bash
+bash ~/Downloads/ritual-setup.sh
+```
+
+It won't hurt anything — it’ll just refresh the scripts and logs.
+
+---
+
+Happy green squaring! 🌿
