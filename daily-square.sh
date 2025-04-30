@@ -5,7 +5,7 @@ trap 'echo "[$(date)] ❌ Script exited unexpectedly" >> "$LOG"' ERR
 # Update this to the correct repo folder
 REPO_DIR=~/Desktop/micro-experiments/
 LOG="$REPO_DIR/cronlog.txt"
-REPO="AshB4/$(basename "$REPO_DIR")"
+REPO="AshB4/micro-experiments"
 
 cd "$REPO_DIR" || {
   echo "[$(date)] ❌ Failed to cd into $REPO_DIR" >> "$LOG"
