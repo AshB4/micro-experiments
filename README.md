@@ -1,45 +1,3 @@
-<<<<<<< HEAD
-🌿 GitHub Green Square Ritual
-
-Keep your contribution graph alive and your coder soul thriving.
-
-Last updated: 2025-05-03
-
-🧙‍♂️ What This Is
-
-This system automates daily GitHub contributions through a stylized "ritual" — flipping your repo public, making a micro-edit, pushing it, and flipping it private again. It logs success or failure and ensures you appear active on weekdays.
-
-You can schedule randomized commit times, include a failsafe check at 4:55 PM, and even skip days with a vacation mode.
-
-🔧 Setup Instructions
-
-Place all files in:
-
-~/Desktop/micro-experiments/
-
-Then make them executable:
-
-chmod +x ~/Desktop/micro-experiments/*.sh
-
-Required Files:
-
-daily-square.sh – core ritual script
-
-schedule-ritual.sh – randomly schedules the ritual for today
-
-ritual-safety-check.sh – runs at 4:55 PM if no commit was made
-
-health-check.sh – optional, alerts if yesterday or today missed
-
-⚙️ Cron Setup
-
-Run:
-
-crontab -e
-
-Paste:
-
-=======
 # 🌿 GitHub Green Square Ritual
 
 *Keep your contribution graph alive and your coder soul thriving.*
@@ -60,8 +18,11 @@ You can schedule randomized commit times, include a failsafe check at 4:55 PM, a
 
 If you'd like to disguise your ritual, enter a custom GitHub repo name when prompted. This makes your commit history look more natural while still feeding the green square gods.
 
-### Change daily-square.sh
+### Change `daily-square.sh`
+
+```bash
 REPO="AshB4/micro-experiments"  # 👈 CHANGE THIS to yourusername/your-repo-name
+```
 
 ### 1. Place all files in:
 
@@ -78,7 +39,7 @@ chmod +x ~/Desktop/micro-experiments/StartRitualSetup.command
 
 ---
 
-## 🚚 .command Launcher Script (for Non-Devs)
+## 🚚 .command Launcher Script (fastest and easiest)
 
 If you're not a terminal wizard, no worries:
 
@@ -105,60 +66,14 @@ crontab -e
 Paste:
 
 ```bash
->>>>>>> b0f9de6 (chore: update notes)
 # Schedule random ritual every weekday at 7:00 AM
-0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/schedule-ritual.sh >> ~/Desktop/micro-experiments/cronlog.txt 2>> ~/Desktop/micro-experiments/cronerror.txt
+0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/schedule-ritual.sh >> ~/Desktop/micro-experiments/logs/cronlog.txt 2>> ~/Desktop/micro-experiments/logs/cronerror.txt
+
+sudo pmset repeat wakeorpoweron MTWRF 06:59:00
+chmod +x StartRitualSetup.command
 
 # Backup ritual at 4:55 PM
-55 16 * * 1-5 /bin/bash ~/Desktop/micro-experiments/ritual-safety-check.sh
-<<<<<<< HEAD
-
-🛑 Vacation Mode
-
-To pause all rituals:
-
-touch ~/Desktop/micro-experiments/vacation.flag
-
-To resume:
-
-rm ~/Desktop/micro-experiments/vacation.flag
-
-🛠️ Manual Use & Diagnostics
-
-Check Scheduled Rituals
-
-atq
-
-View What’s Scheduled:
-
-at -c <job-number>
-
-Run Ritual Manually:
-
-bash ~/Desktop/micro-experiments/daily-square.sh
-
-View Logs:
-
-cat ~/Desktop/micro-experiments/cronlog.txt
-cat ~/Desktop/micro-experiments/cronerror.txt
-
-View Last Commit:
-
-git log -1 --pretty=format:"%h - %s (%cr)"
-
-☕ Prevent Mac From Sleeping (Optional but Important)
-
-Install Amphetamine from Mac App Store
-
-Or use:
-
-sudo pmset repeat wakeorpoweron MTWRFSU 06:59:00
-
-🗃 Notes Folder Structure (Required)
-
-Your ritual script modifies one of these randomly:
-
-=======
+55 16 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/ritual-safety-check.sh
 ```
 
 ---
@@ -168,13 +83,13 @@ Your ritual script modifies one of these randomly:
 To pause all rituals:
 
 ```bash
-touch ~/Desktop/micro-experiments/vacation.flag
+touch ~/Desktop/micro-experiments/logs/vacation.flag
 ```
 
 To resume:
 
 ```bash
-rm ~/Desktop/micro-experiments/vacation.flag
+rm ~/Desktop/micro-experiments/logs/vacation.flag
 ```
 
 ---
@@ -196,14 +111,14 @@ at -c <job-number>
 ### Run Ritual Manually
 
 ```bash
-bash ~/Desktop/micro-experiments/daily-square.sh
+bash ~/Desktop/micro-experiments/scripts/daily-square.sh
 ```
 
 ### View Logs
 
 ```bash
-cat ~/Desktop/micro-experiments/cronlog.txt
-cat ~/Desktop/micro-experiments/cronerror.txt
+cat ~/Desktop/micro-experiments/logs/cronlog.txt
+cat ~/Desktop/micro-experiments/logs/cronerror.txt
 ```
 
 ### View Last Commit
@@ -214,7 +129,7 @@ git log -1 --pretty=format:"%h - %s (%cr)"
 
 ---
 
-## ☕ Prevent Mac From Sleeping (Optional but Important)
+## ☕️ Prevent Mac From Sleeping (Optional but Important)
 
 You MUST ensure your Mac is awake for rituals to work. Options:
 
@@ -244,39 +159,14 @@ Stored here:
 Your ritual script modifies one of these randomly. Keep them or the system breaks:
 
 ```
->>>>>>> b0f9de6 (chore: update notes)
 notes/
 ├── scratch.js
 ├── logs.js
 ├── ideas.js
-├── agorithms.js (typo intended)
+├── agorithms.js   # typo intended because chaos
 ├── square.js
 ├── garden.js
 └── README.md
-<<<<<<< HEAD
-
-Keep these to preserve functionality.
-
-🔄 Reset / Refresh Setup
-
-You can re-run the installer if things break:
-
-bash ~/Downloads/ritual-setup.sh
-
-🔥 Disable Ritual
-
-Temporarily:
-
-Edit crontab and comment out the line:
-
-# 0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/daily.sh
-
-Permanently:
-
-crontab -l | grep -v daily.sh | crontab -
-
-🌈 You're Done
-=======
 ```
 
 ---
@@ -298,30 +188,22 @@ bash ~/Downloads/ritual-setup.sh
 ```bash
 crontab -e
 # comment out:
-# 0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/daily.sh
+# 0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/schedule-ritual.sh
 ```
 
 ### Permanently:
 
 ```bash
-crontab -l | grep -v daily.sh | crontab -
+crontab -l | grep -v schedule-ritual.sh | crontab -
 ```
 
 ---
 
 ## 🌈 You’re Done
->>>>>>> b0f9de6 (chore: update notes)
 
-You're now protected by the ritual gods.
-May your green squares flourish.
+You’re now protected by the ritual gods. May your green squares flourish.
 
-<<<<<<< HEAD
-osascript -e 'display notification "✅ Ritual complete!" with title "GitHub Garden"'
-say "The commit has been accepted. The algorithm smiles upon you."
-
-=======
 ```bash
 osascript -e 'display notification "✅ Ritual complete!" with title "GitHub Garden"'
 say "The commit has been accepted. The algorithm smiles upon you."
 ```
->>>>>>> b0f9de6 (chore: update notes)
