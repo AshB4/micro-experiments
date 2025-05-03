@@ -1,0 +1,45 @@
+╭───────────────────────────────────────────────╮
+│    🟩 GitHub Green Square Ritual – v1.0 🟩     │
+│      A Dev Magic Bundle by AshB4 (FleurDeVie) │
+╰───────────────────────────────────────────────╯
+📅 Date of Incantation: May 3, 2025
+📧 Licensing Contact: fleurdeviefarmsllc@gmail.com
+🌐 GitHub Scrolls: https://github.com/AshB4
+
+🧾 CONTENTS OF THE SACRED BUNDLE:
+
+💡 CORE RITUAL SCRIPTS
+- `daily-square.sh` – Lite Ritual (Editable): $10 tier
+- `daily-square` – Lite Ritual (Obfuscated by shc)
+
+🔮 ADVANCED RITUALS
+- `daily-square-pro.sh` – Pro Ritual with Voice, Messages, & Snark: $15–20 tier
+- `daily-square-pro` – Pro Ritual (Obfuscated by shc)
+
+🧰 SUPPORT SPELLS
+- `schedule-ritual.sh` – Adds cron job to your system’s soul
+- `ritual-safety-check.sh` – Checks sleep mode & internet offering
+- `StartRitualSetup.command` – Mac-friendly GUI summoner
+
+📜 SCROLLS OF KNOWLEDGE
+- `README.md` – Full ritual guide, from cron to vacation warding
+- `TERMS.txt` – Use license (no resale, hexes, or redistribution)
+
+📁 FOLDER STRUCTURE
+micro-experiments/
+├── scripts/       # All ritual code
+├── logs/          # Cron echoes and status traces
+└── notes/         # For journal entries, ritual tweaks, or your manifest destiny
+
+🧙‍♀️ RITUAL NOTES
+- All `.sh` scripts are editable—tinker at your own risk ⚙️
+- Obfuscated versions protect your spells from peeking eyes 🔒
+- Cron setup has been live-tested with system wake support 🕰️
+- Sleep/wake defense powered by ritual-safety-check.sh 💤⚔️
+
+🕯️ FUTURE DROPS MAY INCLUDE:
+- `ritual-dashboard.sh` – Status interface (WIP)
+- `.app` GUI version – For the lazy high priests
+- Extra commit message bundles – Seasonally snarky
+
+⚠️ DO NOT SUMMON THESE FILES DURING MERCURY RETROGRADE.

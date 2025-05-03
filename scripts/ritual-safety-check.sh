@@ -9,3 +9,5 @@ if ! grep -q "$TODAY" "$CRONLOG" || ! grep -q "✅ Commit + Push successful" "$C
 else
   echo "[$(date)] ✅ Ritual already completed. No action taken." >> "$CRONLOG"
 fi
+
+
