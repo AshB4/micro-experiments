@@ -147,6 +147,19 @@ else
   echo "[$(date)] ℹ️ Repo was already PRIVATE; no need to flip back" >> "$LOG"
 fi
 
+CHANTS=(
+  "The commit is cast. The graph glows green. All is in balance."
+  "Push accepted. The algorithm smiles."
+  "Today, the repo obeyed. Tomorrow, it shall serve again."
+  "Ritual complete. Productivity sanctified."
+  "Git bless this day’s offering."
+  "The spirits of Open Source are pleased."
+)
+
+# Pick a random chant
+RANDOM_INDEX=$((RANDOM % ${#CHANTS[@]}))
+say "${CHANTS[$RANDOM_INDEX]}"
+
 # Finalize the ritual
 echo "[$(date)] 🔮 Coding magic complete" >> "$LOG"
 say "The commit has been accepted. The algorithm smiles upon you."
