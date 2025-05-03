@@ -33,7 +33,7 @@ REPO="AshB4/micro-experiments"  # 👈 CHANGE THIS to yourusername/your-repo-nam
 ### 2. Make everything executable:
 
 ```bash
-chmod +x ~/Desktop/micro-experiments/*.sh
+chmod +x ~/Desktop/micro-experiments/scripts/*.sh
 chmod +x ~/Desktop/micro-experiments/StartRitualSetup.command
 ```
 
@@ -55,7 +55,7 @@ Default location:
 
 ---
 
-## ⚙️ Cron Setup + Dual Wake Scheduling
+## ⚙️ Cron Setup
 
 Run:
 
@@ -65,19 +65,103 @@ crontab -e
 
 Paste:
 
-```bash
-# 🌿 GitHub Green Square Ritual
+```cron
+# 🌿 GitHub Green Square Ritual Cron Jobs
 
-# Morning trigger to randomize ritual
+# Random ritual scheduler (runs at 7:00 AM Mon–Fri)
 0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/schedule-ritual.sh >> ~/Desktop/micro-experiments/logs/cronlog.txt 2>> ~/Desktop/micro-experiments/logs/cronerror.txt
 
-# Failsafe ritual at 4:55 PM
+# Failsafe backup at 4:55 PM if nothing was committed
 55 16 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/ritual-safety-check.sh
-
-# System wake at 6:59 AM and backup at 4:54 PM
-sudo pmset repeat wakeorpoweron MTWRF 06:59:00
-sudo pmset schedule wakeorpoweron "$(date +\%Y-\%m-\%d) 16:54:00"
 ```
+
+---
+
+## 🧽 How to Clean Up Bad Crontab Entries (Fixing Noob Oopsies)
+
+If you accidentally pasted junk or broken lines (like `sudo` commands or weird redirection), here's how to fix it.
+
+### Step 1: Open your crontab
+
+```bash
+crontab -e
+```
+
+### Step 2: Clean it up
+
+❌ Remove or fix any broken lines, such as:
+
+* Lines starting with `sudo`
+* Any `-1>>` or malformed redirects
+* Anything that’s not an actual cron job line
+
+✅ Your crontab should match what’s shown above exactly.
+
+### 🧼 How to Clean Up Bad Crontab Entries (Fixing Noob Oopsies)
+
+If you accidentally pasted junk or broken lines (like sudo commands or weird redirection), here's how to fix it.
+
+Step 1: Open your crontab
+
+crontab -e
+
+Step 2: Clean it up
+
+🔚 Remove or fix any broken lines, such as:
+
+Lines starting with sudo
+
+Any -1>> or malformed redirects
+
+Anything that’s not an actual cron job line
+
+🔜 Your crontab should match what’s shown above exactly.
+
+### ✅ How to Fix Crontab in vi
+
+Use arrow keys to move the cursor to the line you want to delete(for example: the malformed -1>> line or duplicate cron jobs)
+
+Press dd (yes, double "d") to delete the whole line
+
+Repeat dd on all the extra/duplicate/broken lines
+
+Type :wq then press Enter to save and exit
+
+### ✅ How to Fix Crontab in nano
+
+Use arrow keys to move the cursor to the bad line
+
+Press Control + K to delete (cut) the whole line
+
+Repeat Control + K on any other lines you want to delete
+
+Press Control + X, then Y, then Enter to save and exit
+
+### Step 3: Save and exit
+
+If you're in `vi` or `vim`, type:
+
+```
+:wq
+```
+
+If you're in `nano`, press:
+
+```
+Control + X → Y → Enter
+```
+
+---
+
+## ⏰ Set System Wake Time
+
+This ensures your Mac wakes before the ritual starts. Run this **once** in the terminal:
+
+```bash
+sudo pmset repeat wakeorpoweron MTWRF 06:59:00
+```
+
+The `schedule-ritual.sh` script will dynamically add a second wake time for the randomized ritual.
 
 ---
 
@@ -191,7 +275,7 @@ bash ~/Downloads/ritual-setup.sh
 ```bash
 crontab -e
 # comment out:
-# 0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/schedule-ritual.sh
+# 0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/schedule-ritual.sh
 ```
 
 ### Permanently:
