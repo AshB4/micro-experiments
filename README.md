@@ -76,11 +76,6 @@ Paste:
 ```
 
 ---
-
-## 🧽 How to Clean Up Bad Crontab Entries (Fixing Noob Oopsies)
-
-If you accidentally pasted junk or broken lines (like `sudo` commands or weird redirection), here's how to fix it.
-
 ### Step 1: Open your crontab
 
 ```bash
@@ -97,9 +92,9 @@ crontab -e
 
 ✅ Your crontab should match what’s shown above exactly.
 
-### 🧼 How to Clean Up Bad Crontab Entries (Fixing Noob Oopsies)
+### 🧽 How to Clean Up Bad Crontab Entries (Fixing Noob Oopsies)
 
-If you accidentally pasted junk or broken lines (like sudo commands or weird redirection), here's how to fix it.
+If you accidentally pasted junk or broken lines (like `sudo` commands or weird redirection), here's how to fix it.
 
 Step 1: Open your crontab
 
