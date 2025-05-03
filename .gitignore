@@ -1,4 +1,18 @@
+# Node + Electron
 node_modules/
+dist/
 .DS_Store
-.env
 *.log
+
+# BFG/Mirror Clones
+micro-experiments-mirror*/
+*.bfg-repo-cleaner*/
+
+# Scripts & Shell Logs
+cronlog.txt
+cronerror.txt
+
+# System Files
+Thumbs.db
+ehthumbs.db
+Icon?
