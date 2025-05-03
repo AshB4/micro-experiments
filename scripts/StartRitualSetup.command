@@ -15,8 +15,17 @@ cd ~/Desktop/micro-experiments/scripts || {
   exit 1
 }
 
-# Run the ritual scheduler with elevated permissions
+# Set default wake time for daily ritual
+sudo pmset repeat wakeorpoweron MTWRF 06:59:00
+
+# Set wake time for failsafe check at 4:54 PM
+sudo pmset schedule wakeorpoweron "$(date -v+0d '+%Y-%m-%d') 16:54:00"
+
+# Run the ritual scheduler
 sudo bash schedule-ritual.sh
+
+# Optional: ensure .command is executable
+chmod +x ~/Desktop/micro-experiments/StartRitualSetup.command
 
 echo "✅ Done! Your ritual has been scheduled and your system will wake up automatically."
 osascript -e 'display notification "Ritual setup complete." with title "GitHub Garden"'

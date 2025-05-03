@@ -55,7 +55,7 @@ Default location:
 
 ---
 
-## ⚙️ Cron Setup
+## ⚙️ Cron Setup + Dual Wake Scheduling
 
 Run:
 
@@ -66,14 +66,17 @@ crontab -e
 Paste:
 
 ```bash
-# Schedule random ritual every weekday at 7:00 AM
-0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/schedule-ritual.sh >> ~/Desktop/micro-experiments/logs/cronlog.txt 2>> ~/Desktop/micro-experiments/logs/cronerror.txt
+# 🌿 GitHub Green Square Ritual
 
-sudo pmset repeat wakeorpoweron MTWRF 06:59:00
-chmod +x StartRitualSetup.command
+# Morning trigger to randomize ritual
+0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/schedule-ritual.sh >> ~/Desktop/micro-experiments/logs/cronlog.txt 2>> ~/Desktop/micro-experiments/logs/cronerror.txt
 
-# Backup ritual at 4:55 PM
+# Failsafe ritual at 4:55 PM
 55 16 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/ritual-safety-check.sh
+
+# System wake at 6:59 AM and backup at 4:54 PM
+sudo pmset repeat wakeorpoweron MTWRF 06:59:00
+sudo pmset schedule wakeorpoweron "$(date +\%Y-\%m-\%d) 16:54:00"
 ```
 
 ---
