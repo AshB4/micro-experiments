@@ -1,0 +1,2 @@
+//asldjflaskjfa;
+const ideas = ["", ""];
