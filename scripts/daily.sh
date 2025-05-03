@@ -1,10 +1,18 @@
 #!/bin/bash
 set -euo pipefail
 
+
+
 CRONDIR="/Users/ash/Desktop/micro-experiments"
 CRONLOG="$CRONDIR/cronlog.txt"
 ERRORLOG="$CRONDIR/cronerror.txt"
 SCRIPT="$CRONDIR/daily-square.sh"
+
+# 🌴 Skip if vacation mode is active
+if [ -f "$CRONDIR/vacation.flag" ]; then
+  echo "[$(date)] 🏖️ Vacation mode enabled — not scheduling today." | tee -a "$CRONLOG"
+  exit 0
+fi
 
 # Trap unexpected errors
 trap 'echo "[$(date)] ❌ Failed to schedule ritual!" | tee -a "$ERRORLOG" "$CRONLOG"' ERR

@@ -1,16 +1,27 @@
 #!/bin/bash
 set -euo pipefail
-trap 'echo "[$(date)] ❌ Script exited unexpectedly" >> "$LOG"' ERR
 
-# Update this to the correct repo folder
-REPO_DIR=~/Desktop/micro-experiments/
-LOG="$REPO_DIR/cronlog.txt"
+REPO_DIR="$HOME/Desktop/micro-experiments"
+LOG="$REPO_DIR/logs/cronlog.txt"
 REPO="AshB4/micro-experiments"
 
+
+# Update this to the correct repo folder
+# ⛱️ Check for vacation mode FIRST
 cd "$REPO_DIR" || {
   echo "[$(date)] ❌ Failed to cd into $REPO_DIR" >> "$LOG"
   exit 1
 }
+
+if [ -f "vacation.flag" ]; then
+  echo "[$(date)] 🌴 Vacation mode active. Ritual skipped." >> "$LOG"
+  say "GitHub ritual skipped. You are on vacation."
+  osascript -e 'display notification "🌴 Ritual paused." with title "GitHub Garden" subtitle "Vacation Mode Active"'
+  exit 0
+fi
+
+# trap must come AFTER cd + checks
+trap 'echo "[$(date)] ❌ Script exited unexpectedly" >> "$LOG"' ERR
 
 # Check current visibility
 CURRENT_VISIBILITY=$(gh repo view "$REPO" --json visibility -q .visibility)
@@ -100,11 +111,24 @@ echo "[$(date)] ⏳ Sleeping $RANDOM_DELAY seconds to mimic human chaos" >> "$LO
 sleep "$RANDOM_DELAY"
 
 # Git commit + push
+# Git commit + push
 git add .
-if git commit -m "$msg" && git push origin main; then
-  echo "[$(date)] ✅ Commit + Push successful: $msg" >> "$LOG"
+if git commit -m "$msg"; then
+  git pull --rebase origin main
+  if git push origin main; then
+    echo "[$(date)] ✅ Commit + Push successful: $msg" >> "$LOG"
+  else
+    echo "[$(date)] ❌ Push failed after rebase: $msg" >> "$LOG"
+    echo "☠️  GitHub gods have rejected your sacrifice. The ritual has failed."
+    say "GitHub gods have rejected your sacrifice. The ritual has failed."
+    osascript -e 'display notification "☠️ Ritual rejected." with title "GitHub Garden" subtitle "Sacrifice was unworthy"'
+    exit 1
+  fi
 else
-  echo "[$(date)] ❌ Commit or Push FAILED: $msg" >> "$LOG"
+  echo "[$(date)] ❌ Commit failed: $msg" >> "$LOG"
+  echo "☠️  Your offering could not even be wrapped. The altar is silent."
+  say "The commit offering failed. The ritual is broken."
+  osascript -e 'display notification "💀 Commit failed." with title "GitHub Garden" subtitle "You brought nothing"'
   exit 1
 fi
 
@@ -123,7 +147,8 @@ else
   echo "[$(date)] ℹ️ Repo was already PRIVATE; no need to flip back" >> "$LOG"
 fi
 
+# Finalize the ritual
 echo "[$(date)] 🔮 Coding magic complete" >> "$LOG"
-say "Your ritual has been successfully offered to the Git gods."
-osascript -e 'display notification "✅ Ritual complete!" with title "GitHub Garden"'
+say "The commit has been accepted. The algorithm smiles upon you."
+osascript -e 'display notification "🌿 GitHub gods smile upon your offering." with title "Ritual Complete"'
 
