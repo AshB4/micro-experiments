@@ -14,6 +14,16 @@ You can schedule randomized commit times, include a failsafe check at 4:55 PM, a
 
 ---
 
+## 🌟 PRO Version Includes
+
+- Voice alerts (macOS `say`)
+- On-screen notifications
+- Extra commit message flavor (humorous + chaotic)
+- Repo flip (public → private dance)
+- GitHub gods chanting (no, seriously)
+
+---
+
 ## 🔧 Setup Instructions
 
 If you'd like to disguise your ritual, enter a custom GitHub repo name when prompted. This makes your commit history look more natural while still feeding the green square gods.
