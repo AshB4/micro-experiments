@@ -1,0 +1,18 @@
+Copyright (c) 2025 FleurDeVie/AshB4 (Ashley Broussard)
+
+
+This software and accompanying files (the "Software") are provided to the purchaser for personal use only. 
+
+You may:
+- Use the Software on your personal machine.
+- Modify the Software **for personal use only**.
+
+You may not:
+- Redistribute, resell, share, or sublicense the Software or any derivative works.
+- Use the Software or derivative works in any commercial product or offering.
+- Decompile or reverse engineer the obfuscated files.
+
+Violation of these terms may result in legal action.
+
+For commercial use or redistribution rights, contact:  
+📧 fleurdeviefarmsllc@gmail.com
