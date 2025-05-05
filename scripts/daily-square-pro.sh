@@ -1,10 +1,15 @@
 #!/bin/bash
 set -euo pipefail
 
-REPO_DIR="$HOME/Desktop/micro-experiments"
-LOG="$REPO_DIR/logs/cronlog.txt"
-REPO="AshB4/micro-experiments"
+REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
+LOG="$(dirname "$REPO_DIR")/logs/cronlog.txt"
+REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$REPO_DIR/.ritualconfig"
 
+if [[ -z "$REPO" ]]; then
+  echo "❌ REPO is not set. Please run StartRitualSetup.command first."
+  exit 1
+fi
 
 # Update this to the correct repo folder
 # ⛱️ Check for vacation mode FIRST

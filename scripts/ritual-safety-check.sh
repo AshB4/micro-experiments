@@ -1,6 +1,7 @@
 #!/bin/bash
 
-CRONLOG="$HOME/Desktop/micro-experiments/logs/cronlog.txt"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+CRONLOG="$SCRIPT_DIR/../logs/cronlog.txt"
 TODAY=$(date +%Y-%m-%d)
 
 if ! grep -q "$TODAY" "$CRONLOG" || ! grep -q "✅ Commit + Push successful" "$CRONLOG"; then

@@ -1,7 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-CRONLOG="$HOME/Desktop/micro-experiments/cronlog.txt"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+CRONLOG="$SCRIPT_DIR/../logs/cronlog.txt"
 TODAY=$(date +%Y-%m-%d)
 YESTERDAY=$(date -v-1d +%Y-%m-%d)  # Mac BSD date format
 HOUR_NOW=$(date +%H)

@@ -1,12 +1,26 @@
 #!/bin/bash
 set -euo pipefail
 
-CRONDIR="$HOME/Desktop/micro-experiments"
-CRONLOG="$CRONDIR/cronlog.txt"
-ERRORLOG="$CRONDIR/cronerror.txt"
+CRONDIR="$(cd "$(dirname "$0")" && pwd)"
+CRONLOG="$CRONDIR/../logs/cronlog.txt"
+ERRORLOG="$CRONDIR/../logs/cronerror.txt"
 SCRIPT="$CRONDIR/daily-square.sh"
-WAKEFILE="$CRONDIR/next-ritual-time.txt"
+WAKEFILE="$CRONDIR/../logs/next-ritual-time.txt"
 
+# 🛑 Sanity checks first
+if ! command -v at &>/dev/null; then
+  echo "❌ 'at' command not found. Please install it with 'brew install at'." | tee -a "$ERRORLOG"
+  exit 1
+fi
+
+if [ ! -f "$SCRIPT" ]; then
+  echo "❌ Ritual script not found at $SCRIPT" | tee -a "$ERRORLOG"
+  exit 1
+fi
+
+mkdir -p "$(dirname "$CRONLOG")"
+
+# Trap for unexpected failures
 trap 'echo "[$(date)] ❌ Failed to schedule ritual!" | tee -a "$ERRORLOG" "$CRONLOG"' ERR
 
 # Skip weekends
@@ -20,8 +34,9 @@ fi
 HOUR=$((RANDOM % 10 + 7))  # 7–16
 MINUTE=$((RANDOM % 60))
 RUNTIME=$(printf "%02d:%02d:00" "$HOUR" "$MINUTE")
-DATE=$(date +%Y-%m-%d)
+DATE=$(date +%m/%d/%y)
 WAKE_TIME="$DATE $RUNTIME"
+
 
 # Save ritual time
 echo "$WAKE_TIME" > "$WAKEFILE"
