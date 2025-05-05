@@ -1,2 +1,0 @@
-[Thu Apr 24 13:26:04 CDT 2025] ❌ Failed to schedule ritual!
-[Mon May  5 14:29:46 CDT 2025] ❌ Failed to schedule ritual!

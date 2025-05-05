@@ -9,8 +9,7 @@ micro-experiments-mirror*/
 *.bfg-repo-cleaner*/
 
 # Scripts & Shell Logs
-cronlog.txt
-cronerror.txt
+logs/*.txt
 
 # System Files
 Thumbs.db
