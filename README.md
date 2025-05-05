@@ -28,40 +28,39 @@ You can schedule randomized commit times, include a failsafe check at 4:55 PM, a
 
 If you'd like to disguise your ritual, enter a custom GitHub repo name when prompted. This makes your commit history look more natural while still feeding the green square gods.
 
-### Change `daily-square.sh`
 
-```bash
-REPO="AshB4/micro-experiments"  # 👈 CHANGE THIS to yourusername/your-repo-name
-```
+### 🚀 Ritual Setup (Zero Terminal Required)
 
-### 1. Place all files in:
+- Just double-click the setup file:
+- Open the folder where you unzipped the ritual
+- Double-click StartRitualSetup.command
+- Enter your GitHub username and repo name when prompted
+- Approve your Mac password when asked (needed for system wake scheduling)
 
-```bash
-~/Desktop/micro-experiments/
-```
+That’s it — the ritual now runs automatically
+
+🪄 No terminal magic required. It sets up everything — wake times, crontab jobs, commit automation, and logs.
+
+### Set Up Repo Info (Automatic)
+
+When you run the setup, it will ask for:
+
+1. Your GitHub username  
+2. The name of the repo you want to use
+
+It will automatically update your settings inside `daily-square.sh`, no editing required.
+
+### 1. Unzip Anywhere
+
+Unzip the folder wherever you'd like — it works from any directory. No need to use `Desktop`.
+
+Just make sure you keep all folders together (especially `scripts/` and `logs/`).
+
 
 ### 2. Make everything executable:
-
-```bash
-chmod +x ~/Desktop/micro-experiments/scripts/*.sh
-chmod +x ~/Desktop/micro-experiments/StartRitualSetup.command
-```
-
----
-
-## 🚚 .command Launcher Script (fastest and easiest)
-
-If you're not a terminal wizard, no worries:
-
-1. Double-click `StartRitualSetup.command`
-2. Enter your Mac password when prompted (needed for system wake scheduling)
-3. Done. Your ritual is now automated and your Mac will wake itself.
-
-Default location:
-
-```bash
-~/Desktop/micro-experiments/StartRitualSetup.command
-```
+# From inside the ritual folder
+chmod +x scripts/*.sh
+chmod +x StartRitualSetup.command
 
 ---
 
@@ -79,13 +78,15 @@ Paste:
 # 🌿 GitHub Green Square Ritual Cron Jobs
 
 # Random ritual scheduler (runs at 7:00 AM Mon–Fri)
-0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/schedule-ritual.sh >> ~/Desktop/micro-experiments/logs/cronlog.txt 2>> ~/Desktop/micro-experiments/logs/cronerror.txt
+0 7 * * 1-5 /bin/bash /path/to/your/ritual-folder/scripts/schedule-ritual.sh >> /path/to/your/ritual-folder/logs/cronlog.txt 2>> /path/to/your/ritual-folder/logs/cronerror.txt
 
 # Failsafe backup at 4:55 PM if nothing was committed
-55 16 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/ritual-safety-check.sh
-```
+55 16 * * 1-5 /bin/bash /path/to/your/ritual-folder/scripts/ritual-safety-check.sh
 
 ---
+> 💡 Tip: You can get the full path by dragging your ritual folder into the Terminal window.
+
+
 ### Step 1: Open your crontab
 
 ```bash
@@ -158,30 +159,49 @@ Control + X → Y → Enter
 
 ---
 
-## ⏰ Set System Wake Time
+## ⏰ System Wake Scheduling (Handled Automatically)
 
-This ensures your Mac wakes before the ritual starts. Run this **once** in the terminal:
+When you run `StartRitualSetup.command`, your Mac will be set to wake up automatically before your ritual.
+
+### 💡 Already included:
+- A **daily wake** at `06:59 AM` (Mon–Fri)
+- A **randomized ritual time** later that morning
+- A **failsafe wake** at `4:54 PM` in case your Mac was sleeping earlier
+
+You *do not* need to run this manually unless something breaks.
+
+---
+
+If needed, you can manually re-run this:
 
 ```bash
 sudo pmset repeat wakeorpoweron MTWRF 06:59:00
-```
+---
 
-The `schedule-ritual.sh` script will dynamically add a second wake time for the randomized ritual.
+### ✅ Bonus: Mention re-canceling (advanced users)
+
+```md
+To remove wake timers:
+```bash
+sudo pmset repeat cancel
+sudo pmset schedule cancel
 
 ---
 
 ## 🚧 Vacation Mode
 
-To pause all rituals:
+Need a break? You can pause your ritual at any time.
+
+To **pause** all activity:
 
 ```bash
-touch ~/Desktop/micro-experiments/logs/vacation.flag
-```
+touch /path/to/your/ritual-folder/logs/vacation.flag
+
 
 To resume:
 
 ```bash
-rm ~/Desktop/micro-experiments/logs/vacation.flag
+rm /path/to/your/ritual-folder/logs/vacation.flag
 ```
 
 ---
@@ -203,14 +223,14 @@ at -c <job-number>
 ### Run Ritual Manually
 
 ```bash
-bash ~/Desktop/micro-experiments/scripts/daily-square.sh
+bash /path/to/your/ritual-folder/scripts/daily-square.sh
 ```
 
 ### View Logs
 
 ```bash
-cat ~/Desktop/micro-experiments/logs/cronlog.txt
-cat ~/Desktop/micro-experiments/logs/cronerror.txt
+cat /path/to/your/ritual-folder/logs/cronlog.txt
+cat /path/to/your/ritual-folder/logs/cronerror.txt
 ```
 
 ### View Last Commit
@@ -223,10 +243,8 @@ git log -1 --pretty=format:"%h - %s (%cr)"
 
 ## ☕️ Prevent Mac From Sleeping (Optional but Important)
 
-You MUST ensure your Mac is awake for rituals to work. Options:
-
-* Install **Amphetamine** from the Mac App Store
-* OR use:
+✅ The setup script already schedules wake times.
+But if you need to do it manually:
 
 ```bash
 sudo pmset repeat wakeorpoweron MTWRF 06:59:00
@@ -236,12 +254,13 @@ The script will also auto-schedule a specific wake time like:
 
 ```bash
 sudo pmset schedule wakeorpoweron "2025-05-04 09:27:00"
+
 ```
 
 Stored here:
 
 ```bash
-~/Desktop/micro-experiments/logs/next-ritual-time.txt
+/path/to/your/ritual-folder/logs/next-ritual-time.txt
 ```
 
 ---
@@ -280,7 +299,7 @@ bash ~/Downloads/ritual-setup.sh
 ```bash
 crontab -e
 # comment out:
-# 0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/schedule-ritual.sh
+# 0 7 * * 1-5 /bin/bash /path/to/your/ritual-folder/scripts/schedule-ritual.sh
 ```
 
 ### Permanently:
