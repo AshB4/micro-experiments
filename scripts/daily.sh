@@ -1,13 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
-
-
+# 📍 Paths
 CRONDIR="$(cd "$(dirname "$0")" && pwd)"
 CRONLOG="$CRONDIR/cronlog.txt"
 ERRORLOG="$CRONDIR/cronerror.txt"
 SCRIPT="$CRONDIR/daily-square.sh"
-
 
 # 🌴 Skip if vacation mode is active
 if [ -f "$CRONDIR/vacation.flag" ]; then

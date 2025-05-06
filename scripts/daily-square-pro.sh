@@ -1,10 +1,19 @@
 #!/bin/bash
 set -euo pipefail
+echo "tail -n 15 \"$CRONLOG\" >> \"$CRONLOG\"" | at "${HOUR}:${MINUTE}"
+echo "[$(date)] 🔥 daily-square.sh STARTED (manual marker)" >> ~/Desktop/micro-experiments/logs/cronlog.txt
+trap 'echo "[$(date)] ❌ Script crashed early" >> ~/Desktop/micro-experiments/logs/cronlog.txt' ERR
+echo "[$(date)] 🎯 Ritual actually triggered" >> "$LOG"
 
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG="$(dirname "$REPO_DIR")/logs/cronlog.txt"
-REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$REPO_DIR/.ritualconfig"
+
+# ☕ Keep the system awake
+caffeinate -dimsu &
+CAFFEINATE_PID=$!
+trap "kill $CAFFEINATE_PID" EXIT
+echo "[$(date)] ☕ Caffeinate engaged with PID $CAFFEINATE_PID" >> "$LOG"
 
 if [[ -z "$REPO" ]]; then
   echo "❌ REPO is not set. Please run StartRitualSetup.command first."
@@ -169,4 +178,6 @@ say "${CHANTS[$RANDOM_INDEX]}"
 echo "[$(date)] 🔮 Coding magic complete" >> "$LOG"
 say "The commit has been accepted. The algorithm smiles upon you."
 osascript -e 'display notification "🌿 GitHub gods smile upon your offering." with title "Ritual Complete"'
+echo "[$(date)] 🔥 daily-square.sh STARTED" >> ~/Desktop/micro-experiments/logs/cronlog.txt
+echo "[$(date)] 🎯 Test line executed" >> ~/Desktop/micro-experiments/logs/cronlog.txt
 

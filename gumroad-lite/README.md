@@ -1,8 +1,10 @@
+<!-- @format -->
+
 # 🌿 GitHub Green Square Ritual
 
-*Keep your contribution graph alive and your coder soul thriving.*
+_Keep your contribution graph alive and your coder soul thriving._
 
-*Last updated: 2025-05-03*
+_Last updated: 2025-05-03_
 
 ---
 
@@ -77,15 +79,19 @@ Paste:
 
 ```cron
 # 🌿 GitHub Green Square Ritual Cron Jobs
+# ☕ 7 AM: Schedule ritual (prevents sleep during setup)
+0 7 * * 1-5 caffeinate -s /bin/bash ~/green-square-ritual/schedule-ritual.sh >> ~/green-square-ritual/logs/cronlog.txt 2>> ~/green-square-ritual/logs/cronerror.txt
 
-# Random ritual scheduler (runs at 7:00 AM Mon–Fri)
-0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/schedule-ritual.sh >> ~/Desktop/micro-experiments/logs/cronlog.txt 2>> ~/Desktop/micro-experiments/logs/cronerror.txt
+# 🛟 10 AM: Fallback if ritual wasn't queued
+0 10 * * 1-5 caffeinate -s /bin/bash ~/green-square-ritual/health-check.sh >> ~/green-square-ritual/logs/failsafe.txt 2>> ~/green-square-ritual/logs/failsafe-error.txt
 
-# Failsafe backup at 4:55 PM if nothing was committed
-55 16 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/ritual-safety-check.sh
+# 🔥 4:55 PM: Final failsafe to force a commit if nothing happened
+55 16 * * 1-5 caffeinate -s /bin/bash ~/green-square-ritual/ritual-safety-check.sh >> ~/green-square-ritual/logs/safety.txt 2>> ~/green-square-ritual/logs/safety-error.txt
+
 ```
 
 ---
+
 ### Step 1: Open your crontab
 
 ```bash
@@ -96,13 +102,13 @@ crontab -e
 
 ❌ Remove or fix any broken lines, such as:
 
-* Lines starting with `sudo`
-* Any `-1>>` or malformed redirects
-* Anything that’s not an actual cron job line
+- Lines starting with `sudo`
+- Any `-1>>` or malformed redirects
+- Anything that’s not an actual cron job line
 
 ✅ Your crontab should match what’s shown above exactly.
 
-### 🧽 How to Clean Up Bad Crontab Entries (Fixing Noob Oopsies)
+### 🧽 How to Clean Up Bad Crontab Entries (Fixing Oopsies)
 
 If you accidentally pasted junk or broken lines (like `sudo` commands or weird redirection), here's how to fix it.
 
@@ -225,8 +231,8 @@ git log -1 --pretty=format:"%h - %s (%cr)"
 
 You MUST ensure your Mac is awake for rituals to work. Options:
 
-* Install **Amphetamine** from the Mac App Store
-* OR use:
+- Install **Amphetamine** from the Mac App Store
+- OR use:
 
 ```bash
 sudo pmset repeat wakeorpoweron MTWRF 06:59:00

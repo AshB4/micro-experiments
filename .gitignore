@@ -10,6 +10,13 @@ micro-experiments-mirror*/
 
 # Scripts & Shell Logs
 logs/*.txt
+build/
+*.sh.x
+*.sh.x.c
+*.bin
+*.log
+*.key
+
 
 # System Files
 Thumbs.db

@@ -77,12 +77,15 @@ Paste:
 
 ```cron
 # 🌿 GitHub Green Square Ritual Cron Jobs
+# ☕ 7 AM: Schedule pro ritual
+0 7 * * 1-5 caffeinate -s /bin/bash ~/green-square-ritual/schedule-ritual.sh >> ~/green-square-ritual/logs/cronlog.txt 2>> ~/green-square-ritual/logs/cronerror.txt
 
-# Random ritual scheduler (runs at 7:00 AM Mon–Fri)
-0 7 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/schedule-ritual.sh >> ~/Desktop/micro-experiments/logs/cronlog.txt 2>> ~/Desktop/micro-experiments/logs/cronerror.txt
+# 🛟 10 AM: Fallback check if ritual wasn't queued
+0 10 * * 1-5 caffeinate -s /bin/bash ~/green-square-ritual/health-check.sh >> ~/green-square-ritual/logs/failsafe.txt 2>> ~/green-square-ritual/logs/failsafe-error.txt
 
-# Failsafe backup at 4:55 PM if nothing was committed
-55 16 * * 1-5 /bin/bash ~/Desktop/micro-experiments/scripts/ritual-safety-check.sh
+# 🔥 4:55 PM: Force backup commit if no Pro ritual happened
+55 16 * * 1-5 caffeinate -s /bin/bash ~/green-square-ritual/ritual-safety-check.sh >> ~/green-square-ritual/logs/safety.txt 2>> ~/green-square-ritual/logs/safety-error.txt
+
 ```
 
 ---
