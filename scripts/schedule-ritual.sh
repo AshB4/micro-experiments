@@ -31,7 +31,7 @@ if [ "$DAYOFWEEK" -gt 5 ]; then
 fi
 
 if [[ $(pmset -g | grep " sleep" | awk '{print $2}') -ne 0 ]]; then
-  echo "[$(date)] ⚠️ WARNING: System sleep may block this script!" >> "$LOG"
+  echo "[$(date)] ⚠️ WARNING: System sleep may block this script!" >> "$CRONLOG"
 fi
 
 # Randomize time between 7:00 AM and 4:59 PM
@@ -41,9 +41,9 @@ RUNTIME=$(printf "%02d:%02d:00" "$HOUR" "$MINUTE")
 DATE=$(date +%m/%d/%y)
 WAKE_TIME="$DATE $RUNTIME"
 
-
-# Save ritual time
+# Save the next ritual time to a file
 echo "$WAKE_TIME" > "$WAKEFILE"
+echo "🛏 Scheduling system wake for: $WAKE_TIME" | tee -a "$CRONLOG"
 
 # Schedule wake for ritual
 sudo pmset schedule wakeorpoweron "$WAKE_TIME"

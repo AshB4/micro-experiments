@@ -2,9 +2,10 @@
 set -euo pipefail
 
 # 💾 Paths
-REPO_DIR="$HOME/Desktop/micro-experiments"
+REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG="$REPO_DIR/logs/cronlog.txt"
 ERRORLOG="$REPO_DIR/logs/cronerror.txt"
+
 SCRIPT_PATH="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_PATH/.ritualconfig" 2>/dev/null || echo "[$(date)] ⚠️ .ritualconfig not found or failed to load" >> "$LOG"
 

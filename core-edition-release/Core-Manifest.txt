@@ -1,0 +1,44 @@
+🌿 Green Square Ritual – Core Edition  
+------------------------------------  
+Edition:        Core  
+Version:        v1.0  
+Author:         Fleur de Vie (Ash B4)  
+
+📦 Included Files:
+- scripts/daily-square.sh.x ............. Main commit script (manual run)
+- scripts/core-ritual-setup.command ...... Setup assistant: config + file prep
+- notes/*.js ............................. Pre-created code files for ritual (green square safe)
+- logs/cronlog.txt ....................... Commit log history
+- logs/cronerror.txt ..................... Error log
+- .ritualconfig .......................... Stores your GitHub repo info
+- Core_Edition_README.md ................ Ritual walkthrough and vibes
+- Core-Manifest.txt ..................... This file
+- Dev-Spellbook.txt ..................... Guide with lore, usage, and sass
+
+🖥️ System Requirements:
+- macOS (tested on Monterey and newer)
+- Terminal access
+- Git installed
+- GitHub repo already created (public or private)
+
+⚙️ Setup Summary:
+1. Run `core-ritual-setup.command` to:
+   - Set your GitHub repo config
+   - Make the main ritual script executable
+   - Create note files and log folders
+2. Manually run `./scripts/daily-square.sh.x` to perform your daily ritual.
+3. Optionally run `schedual-ritual.sh.x` to generate randomized commit time suggestions.
+4. Use the `logs/` folder to track success and troubleshoot any issues.
+
+🚫 Not Included in Core:
+- Automated cron scheduling
+- Voice sass (Coming Soon!)
+- Rickroll hacker trap
+- Health-check failsafe automation
+
+🧘 Purpose:
+This edition is for developers who value **intentional ritual over automation**.  
+You choose when to commit. You shape your streak.  
+The terminal obeys your will — no background demons.
+
+May your contributions be evergreen. 🌿

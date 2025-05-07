@@ -1,0 +1,63 @@
+📜 Dev Spellbook – Core Edition
+
+🌿 Green Square Ritual – Dev Spellbook: Core Edition  
+A manual of intention. A tool of quiet power.  
+For the developer who commits with purpose — not panic.
+
+---
+
+⚙️ Tools Inside the Ritual Kit
+
+- `daily-square.sh.x` — the sacred commit script  
+- `schedual-ritual.sh.x` — a mischief-maker for randomized commit times  
+- `core-ritual-setup.command` — the one-click executable blessing & GitHub linker  
+- `notes/` — your prefilled code pages to ensure green square success  
+- `logs/` — your digital grimoire of success and failure  
+- `Core_Edition_README.md` — a no-fluff walkthrough (with vibes)  
+- `Core-Manifest.txt` — what’s included, what’s forbidden
+
+---
+
+🔮 Performing the Ritual
+
+1. Double-click `core-ritual-setup.command`  
+   This will:
+   - Ask for your GitHub username & repo
+   - Make the commit script executable
+   - Create your logs + sacred `.js` notes
+
+2. Open Terminal and run:
+   ./scripts/daily-square.sh.x
+
+   This performs your daily commit ritual.
+   If your offering is worthy (and your repo is set)... 
+    You shall summon a green square...  
+    The grid shall live another day.
+
+✨ Ritual results are stored in `/logs/`, like margin notes in an arcane spellbook.
+
+---
+
+💡 Optional Enhancements
+
+- Use `schedual-ritual.sh.x` to manifest randomized windows of contribution  
+- Add a `cron` job only if you’re ready to automate intention  
+- But remember: **the ritual works best when done on purpose** 🌙
+
+---
+
+🧘‍♂️ Why Core Exists
+
+This is for devs who want the **power**, not the **noise**.  
+You choose when to summon.  
+You decide what gets pushed.  
+You control the square.
+
+The code obeys.  
+The streak lives.  
+The world need not know the magic behind your grid.  
+
+—
+
+> “Discipline is the highest form of magic.  
+> Your streak is sacred. Let no taskmaster claim it.” 🌿

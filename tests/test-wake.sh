@@ -1,6 +1,5 @@
 #!/bin/bash
 set -euo pipefail
-echo "echo \"[$(date)] 🧨 at job triggered from \$(pwd)\" >> \"$LOG\"; env >> \"$LOG\"; /bin/bash \"$SCRIPT\" >> \"$LOG\" 2>> \"$ERRORLOG\"" | at "$SCHED_HOUR:$SCHED_MIN"
 
 # 🕰️ Get current time
 MIN=$(date +%M)
@@ -37,7 +36,7 @@ sudo pmset schedule wakeorpoweron "$WAKE_TIME"
 
 # 🧙‍♀️ Schedule the actual ritual using `at`
 echo "[$(date)] 🎯 Scheduling ritual via 'at' for $SCHED_HOUR:$SCHED_MIN" | tee -a "$LOG"
-echo "source ~/.zprofile; /bin/bash \"$SCRIPT\" >> \"$LOG\" 2>> \"$ERRORLOG\"" | at "$SCHED_HOUR:$SCHED_MIN"
+echo "echo \"[$(date)] 🧨 at job triggered from \$(pwd)\" >> \"$LOG\"; env >> \"$LOG\"; /bin/bash \"$SCRIPT\" >> \"$LOG\" 2>> \"$ERRORLOG\"" | at "$SCHED_HOUR:$SCHED_MIN"
 
 # 🧾 Confirm scheduled `at` jobs
 echo "[$(date)] 📜 'atq' job queue snapshot:" | tee -a "$LOG"
